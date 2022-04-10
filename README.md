@@ -1,2 +1,4 @@
-countdown clock created.
-linked to DOM
+Created basic game.
+
+
+//Need to create operator selection,max value selection, and high score value
