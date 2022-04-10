@@ -1,9 +1,28 @@
 
 $(document).ready(function(){
 
-
+    var interval;
     var currentQuestion;
     var timeLeft = 10;
+    var score = 0;
+
+
+    var startGame = function(){
+        if(!interval){
+            if(timeLeft === 0){
+                updateTimeLeft(10);
+                updateScore(-score);
+            }
+            interval = setInterval(function(){
+                updateTimeLeft(-1);
+                $('#time-left').text(timeLeft);
+                if(timeLeft === 0){
+                    clearInterval(interval);
+                    interval = undefined;
+                }  
+            }, 1000);
+        }
+    }
 
 
 var randomNumberGenerator = function(size){
@@ -34,27 +53,27 @@ var checkAnswer = function(userInput, answer){
         renderNewQuestion();
         $('#user-input').val('');
         updateTimeLeft(+1);
+        updateScore(+1);
     };
 }
 
 $('#user-input').on('keyup', function(){
+    startGame();
     checkAnswer(Number($(this).val()), currentQuestion.answer);
 });
 
 
-var interval = setInterval(function(){
-    updateTimeLeft(-1);
-    $('#time-left').text(timeLeft);
-    if(timeLeft === 0){
-        clearInterval(interval);
-    }  
-}, 1000);
+
 
 var updateTimeLeft = function(amount){
     timeLeft += amount;
     $('#time-left').text(timeLeft);
 }
 
+var updateScore = function(amount){
+    score += amount;
+    $('#score').text(score);
+}
 
 
 renderNewQuestion();
