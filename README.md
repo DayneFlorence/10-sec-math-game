@@ -1,1 +1,1 @@
-# 10-sec-math-game
+initial files added
