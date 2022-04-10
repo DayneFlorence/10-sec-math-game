@@ -1,3 +1,4 @@
-User input connected to question generator.
-User input can compare with question answer.
-New questions generated if answer is true.
+Created basic game.
+
+
+//Need to create operator selection,max value selection, and high score value
