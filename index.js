@@ -3,6 +3,7 @@ $(document).ready(function(){
 
 
     var currentQuestion;
+    var timeLeft = 10;
 
 
 var randomNumberGenerator = function(size){
@@ -29,16 +30,32 @@ var renderNewQuestion = function(){
 
 
 var checkAnswer = function(userInput, answer){
-    if(userInput === answer){
-        
+    if(userInput === answer){    
         renderNewQuestion();
         $('#user-input').val('');
+        updateTimeLeft(+1);
     };
 }
 
 $('#user-input').on('keyup', function(){
     checkAnswer(Number($(this).val()), currentQuestion.answer);
 });
+
+
+var interval = setInterval(function(){
+    updateTimeLeft(-1);
+    $('#time-left').text(timeLeft);
+    if(timeLeft === 0){
+        clearInterval(interval);
+    }  
+}, 1000);
+
+var updateTimeLeft = function(amount){
+    timeLeft += amount;
+    $('#time-left').text(timeLeft);
+}
+
+
 
 renderNewQuestion();
 
