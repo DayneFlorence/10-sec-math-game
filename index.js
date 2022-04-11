@@ -1,16 +1,24 @@
 
 $(document).ready(function(){
 
+    var operators = [];
     var interval;
     var currentQuestion;
-    var timeLeft = 10;
+    var timeLeft = 5;
     var score = 0;
+    var highScore = 0;
+
+
+    $('.op-btn').on('click',function(event){
+        operators.push($(this).val());
+        console.log(operators);
+    })
 
 
     var startGame = function(){
         if(!interval){
             if(timeLeft === 0){
-                updateTimeLeft(10);
+                updateTimeLeft(5);
                 updateScore(-score);
             }
             interval = setInterval(function(){
@@ -19,7 +27,9 @@ $(document).ready(function(){
                 if(timeLeft === 0){
                     clearInterval(interval);
                     interval = undefined;
+                    
                 }  
+                
             }, 1000);
         }
     }
@@ -44,6 +54,7 @@ var questionGenerator = function(){
 var renderNewQuestion = function(){
     currentQuestion = questionGenerator();
     $('#equation').text(currentQuestion.equation);
+    
 }
 
 
@@ -54,6 +65,9 @@ var checkAnswer = function(userInput, answer){
         $('#user-input').val('');
         updateTimeLeft(+1);
         updateScore(+1);
+        updateHighScore();
+        
+       
     };
 }
 
@@ -73,9 +87,20 @@ var updateTimeLeft = function(amount){
 var updateScore = function(amount){
     score += amount;
     $('#score').text(score);
+    
+}
+
+var updateHighScore = function(){
+    if(score > highScore){
+        highScore = score;
+        $('#high-score').text(highScore);
+        
+    }
+    
 }
 
 
 renderNewQuestion();
+
 
 })
