@@ -21,3 +21,7 @@ h3{
 .op-btn{
     margin: 0 10px;
 }
+
+.checked{
+    background-color: rgb(98, 98, 255);
+}

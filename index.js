@@ -10,7 +10,17 @@ $(document).ready(function(){
 
 
     $('.op-btn').on('click',function(event){
-        operators.push($(this).val());
+        if(operators.includes(this.value) === false){
+            operators.push(this.value);
+            $(this).toggleClass('checked');
+        }
+        else if(operators.includes(this.value) === true){
+            operators.splice(operators.indexOf(this.value),1);
+            $(this).toggleClass('checked');
+        };
+            
+        
+        
         console.log(operators);
     })
 
@@ -39,12 +49,21 @@ var randomNumberGenerator = function(size){
     return Math.ceil(Math.random() * size);
 }
 
+var randomOperatorGenerator = function(arr){
+    var randomNum = Math.floor(Math.random() * arr.length) + 1;
+    var selection = arr[randomNum];
+
+    
+}
+
 var questionGenerator = function(){
     var question = {};
     var num1 = randomNumberGenerator(10);
     var num2 = randomNumberGenerator(10);
-
-    question.answer = num1 + num2;
+    
+    //Add new question system so num1 and num2 are added to function with operator function to determine correct answer.
+   
+    question.answer = num1 +  num2;
     question.equation = String(num1) + " + " + String(num2);
 
     return question;
