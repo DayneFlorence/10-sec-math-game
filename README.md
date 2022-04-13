@@ -1,3 +1,3 @@
-Toggle css when selecting operators.
-Added operators to array..but in string.
-Working on new question generator system to include values included in operators array.
+Created max-limit slider.
+Can recieve values of randomly selected Operators.
+Now need to apply random operator within quesition.
