@@ -22,11 +22,16 @@
                 <h1 id="equation"></h1>
                 <input id="user-input" type="number">
                 <div class="op-selection">
-                    <button id="add" class="op-btn" value="+">+</button>
+                    <button id="add" class="op-btn checked" value="+">+</button>
                     <button id="subtract" class="op-btn" value="-">-</button>
                     <button id="multiply" class="op-btn" value="*">x</button>
                     <button id="divide" class="op-btn" value="/">/</button>
                 </div>
+                <div class="max-num-container">
+                    <label for="slider">Max number: <span id="max-num"></span> </label>
+                    <input type="range" id="slider"  min="10" max="50" step="5" value="10">
+                </div>
+                
                 <h4>Score: <span id="score"></span> </h4>
                 <h4>High Score: <span id="high-score"></span> </h4>
             </div>

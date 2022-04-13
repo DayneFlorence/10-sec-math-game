@@ -4,7 +4,7 @@ $(document).ready(function(){
     var operators = [];
     var interval;
     var currentQuestion;
-    var timeLeft = 5;
+    var timeLeft = 10;
     var score = 0;
     var highScore = 0;
 
@@ -28,7 +28,7 @@ $(document).ready(function(){
     var startGame = function(){
         if(!interval){
             if(timeLeft === 0){
-                updateTimeLeft(5);
+                updateTimeLeft(10);
                 updateScore(-score);
             }
             interval = setInterval(function(){
@@ -45,21 +45,29 @@ $(document).ready(function(){
     }
 
 
+
+
 var randomNumberGenerator = function(size){
     return Math.ceil(Math.random() * size);
 }
 
-var randomOperatorGenerator = function(arr){
-    var randomNum = Math.floor(Math.random() * arr.length) + 1;
-    var selection = arr[randomNum];
+var randomOperatorGenerator = function(){
+    console.log(operators[Math.floor(Math.random() * operators.length)]); 
+    
 
     
 }
 
 var questionGenerator = function(){
     var question = {};
-    var num1 = randomNumberGenerator(10);
-    var num2 = randomNumberGenerator(10);
+
+    $('#slider').on('input', function(){
+        var val = $('#slider').val();
+        $('#max-num').text(val);
+    })
+    randomOperatorGenerator();
+    var num1 = randomNumberGenerator($('#slider').val());
+    var num2 = randomNumberGenerator($('#slider').val());
     
     //Add new question system so num1 and num2 are added to function with operator function to determine correct answer.
    

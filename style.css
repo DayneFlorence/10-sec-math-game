@@ -25,3 +25,14 @@ h3{
 .checked{
     background-color: rgb(98, 98, 255);
 }
+
+
+.max-num-container{
+    margin-top: 15px;
+}
+
+#slider{
+    margin:5px auto;
+    width: 75%;
+}
+
