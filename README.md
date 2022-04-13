@@ -1,4 +1,2 @@
-Created basic game.
-
-
-//Need to create operator selection,max value selection, and high score value
+Added highscore.
+Operators add console.log() of operator array.
