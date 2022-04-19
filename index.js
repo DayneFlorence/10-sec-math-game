@@ -8,14 +8,16 @@ $(document).ready(function(){
     var score = 0;
     var highScore = 0;
 
-
+   
 
     let reset = function(e){
         timeLeft = 10;
+        $('#time-left').text(timeLeft);
         operators = [];
-        score = 0;
+        updateScore(-score);
         $('#slider').val('10');
         $('#max-num').text('10');
+        
     }
 
 
@@ -54,6 +56,7 @@ $(document).ready(function(){
                 updateTimeLeft(10);
                 updateScore(-score);
             }
+            
             interval = setInterval(function(){
                 updateTimeLeft(-1);
                 $('#time-left').text(timeLeft);
@@ -127,8 +130,11 @@ var checkAnswer = function(userInput, answer){
 }
 
 $('#user-input').on('keyup', function(){
-    startGame();
-    checkAnswer(Number($(this).val()), currentQuestion.answer);
+    if(timeLeft !== 0){
+        startGame();
+        checkAnswer(Number($(this).val()), currentQuestion.answer);
+    }
+   
 });
 
 
@@ -155,6 +161,8 @@ var updateHighScore = function(){
 }
 
 $('#reset-btn').on('click', reset);
+
+
 
 
 renderNewQuestion();

@@ -4,26 +4,33 @@
     height: 100vh;
     text-align: center;
     border: 1px solid black;
+    background-image:url('images/dan-cristian-padure-xJLN32FO7AY-unsplash.jpg');
     
     
 }
 
-@media(min-width:1002px){
+@media(min-width:768px){
     .container{
         padding: 5px;
-        min-width: 650px;
+        width:100%;
+        
         
     }
+    
 }
 
 .col-xs-12{
     border: 1px solid black;
-    padding: 10px;
+    padding: 50px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     height: 80vh;
+    background-color: white;
+    border-radius: 15px;
+    max-width: 600px;
+    
 }
 
 #slider{
@@ -33,8 +40,12 @@
 }
 
 @media(max-width: 767px){
+    
     .col-xs-12{
         width: 100%;
+        border-radius: 0;
+        height: 75vh;
+        
     }
     #slider{
         width:60%;
