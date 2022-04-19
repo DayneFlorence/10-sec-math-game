@@ -80,11 +80,16 @@ var questionGenerator = function(){
     randomOperatorGenerator();
     var num1 = randomNumberGenerator($('#slider').val());
     var num2 = randomNumberGenerator($('#slider').val());
-    
-    //Add new question system so num1 and num2 are added to function with operator function to determine correct answer.
+    var op = randomOperatorGenerator();
    
-    question.answer = num1 +  num2;
-    question.equation = String(num1) + " + " + String(num2);
+   if(num1 < num2){
+       [num1, num2] = [num2, num1];
+   }
+    question.answer = eval(num1 + op +  num2);
+    if(question.answer < 0 || question.answer % 1 !== 0){
+        questionGenerator();
+    }
+    question.equation = String(num1) + ' ' + op + ' ' + String(num2);
 
     return question;
 }
