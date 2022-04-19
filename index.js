@@ -9,6 +9,17 @@ $(document).ready(function(){
     var highScore = 0;
 
 
+
+    let reset = function(e){
+        timeLeft = 10;
+        operators = [];
+        score = 0;
+        $('#slider').val('10');
+        $('#max-num').text('10');
+    }
+
+
+
     if(operators.length === 0){
         operators.push('+');
         $('#add').toggleClass('checked')
@@ -142,6 +153,8 @@ var updateHighScore = function(){
     }
     
 }
+
+$('#reset-btn').on('click', reset);
 
 
 renderNewQuestion();
