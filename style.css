@@ -21,3 +21,18 @@ h3{
 .op-btn{
     margin: 0 10px;
 }
+
+.checked{
+    background-color: rgb(98, 98, 255);
+}
+
+
+.max-num-container{
+    margin-top: 15px;
+}
+
+#slider{
+    margin:5px auto;
+    width: 75%;
+}
+
