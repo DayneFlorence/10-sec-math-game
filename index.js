@@ -9,14 +9,26 @@ $(document).ready(function(){
     var highScore = 0;
 
 
+    if(operators.length === 0){
+        operators.push('+');
+        $('#add').toggleClass('checked')
+       
+    }
+
     $('.op-btn').on('click',function(event){
+
         if(operators.includes(this.value) === false){
             operators.push(this.value);
             $(this).toggleClass('checked');
         }
         else if(operators.includes(this.value) === true){
-            operators.splice(operators.indexOf(this.value),1);
+            if(operators.length > 1){
+                operators.splice(operators.indexOf(this.value),1);
             $(this).toggleClass('checked');
+            }else{
+                return;
+            }
+            
         };
             
         
@@ -52,7 +64,7 @@ var randomNumberGenerator = function(size){
 }
 
 var randomOperatorGenerator = function(){
-    console.log(operators[Math.floor(Math.random() * operators.length)]); 
+     return operators[Math.floor(Math.random() * operators.length)]; 
     
 
     
