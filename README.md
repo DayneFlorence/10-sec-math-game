@@ -1,3 +1,3 @@
-Created max-limit slider.
-Can recieve values of randomly selected Operators.
-Now need to apply random operator within quesition.
+Able to use all operator.
+Does not allow negative or decimal answers.
+Makes sure first number is larger or equal to second number.
