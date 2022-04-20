@@ -17,6 +17,9 @@ $(document).ready(function(){
         updateScore(-score);
         $('#slider').val('10');
         $('#max-num').text('10');
+        $('#time-left').css('color', 'black');
+        
+        
         
     }
 
@@ -53,6 +56,7 @@ $(document).ready(function(){
     var startGame = function(){
         if(!interval){
             if(timeLeft === 0){
+                
                 updateTimeLeft(10);
                 updateScore(-score);
             }
@@ -61,6 +65,9 @@ $(document).ready(function(){
                 updateTimeLeft(-1);
                 $('#time-left').text(timeLeft);
                 if(timeLeft === 0){
+                    $('#time-left').text("Time's Up!");
+                    $('#time-left').css('color', 'red');
+                    $('#secs').toggleClass('hidden');
                     clearInterval(interval);
                     interval = undefined;
                     
