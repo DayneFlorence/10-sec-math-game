@@ -10,17 +10,17 @@ $(document).ready(function(){
 
    
 
-    let reset = function(e){
-        timeLeft = 10;
-        $('#time-left').text(timeLeft);
-        operators = [];
-        updateScore(-score);
-        $('#slider').val('10');
-        $('#max-num').text('10');
-        $('#time-left').css('color', 'black');
-        
-        
-        
+    let reset = function(){
+        if(timeLeft === 0){
+            timeLeft = 10;
+            $('#time-left').text(timeLeft);
+            updateScore(-score);
+            $('#slider').val('10');
+            $('#max-num').text('10');
+            $('#time-left').css('color', 'black');
+            renderNewQuestion();
+            listenForInput();
+        }     
     }
 
 
@@ -103,19 +103,31 @@ var questionGenerator = function(){
     var num2 = randomNumberGenerator($('#slider').val());
     var op = randomOperatorGenerator();
    
-   if(num1 < num2){
-       [num1, num2] = [num2, num1];
-   }
-
-   if(op === '/'){
-       var num3 = num1 * num2;
-       [num1,num2] = [num3, num1];
-   }
-    question.answer = eval(num1 + op +  num2);
-    if(question.answer < 0 || question.answer % 1 !== 0){
-        questionGenerator();
+    if(op === '/'){
+        var num3 = num1 * num2;
+        question.answer = eval(num3 + op + num1);
+        if(question.answer < 0 || question.answer % 1 !== 0){
+            questionGenerator();
+            console.log('working');
+        }
+        question.equation = String(num3) + ' ' + op + ' ' + String(num1);
+    } else{
+        if(num1 < num2){
+            [num1, num2] = [num2, num1];
+        }
+        question.answer = eval(num1 + op + num2);
+        
+        if(question.answer < 0 || question.answer % 1 !== 0){
+            question.answer = eval(num2 + op + num1);
+            question.equation = String(num2) + ' ' + op + ' ' + String(num1);
+    } else{
+        question.answer = eval(num1 + op + num2);
+        question.equation = String(num1) + ' ' + op + ' ' + String(num2);
     }
-    question.equation = String(num1) + ' ' + op + ' ' + String(num2);
+        
+    }
+
+   
 
     return question;
 }
@@ -141,14 +153,16 @@ var checkAnswer = function(userInput, answer){
     };
 }
 
-$('#user-input').on('keyup', function(){
+var listenForInput = function(){
+    $('#user-input').on('keyup', function(){
     if(timeLeft !== 0){
         startGame();
         checkAnswer(Number($(this).val()), currentQuestion.answer);
     }
    
 });
-
+}
+listenForInput();
 
 
 
