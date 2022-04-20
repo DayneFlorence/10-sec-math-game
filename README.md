@@ -1,3 +1,3 @@
-Able to use all operator.
-Does not allow negative or decimal answers.
-Makes sure first number is larger or equal to second number.
+Added notification when time runs out.
+finished styling.
+Finished first draft of game.
