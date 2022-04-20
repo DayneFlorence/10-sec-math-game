@@ -8,6 +8,22 @@ $(document).ready(function(){
     var score = 0;
     var highScore = 0;
 
+   
+
+    let reset = function(e){
+        timeLeft = 10;
+        $('#time-left').text(timeLeft);
+        operators = [];
+        updateScore(-score);
+        $('#slider').val('10');
+        $('#max-num').text('10');
+        $('#time-left').css('color', 'black');
+        
+        
+        
+    }
+
+
 
     if(operators.length === 0){
         operators.push('+');
@@ -40,13 +56,18 @@ $(document).ready(function(){
     var startGame = function(){
         if(!interval){
             if(timeLeft === 0){
+                
                 updateTimeLeft(10);
                 updateScore(-score);
             }
+            
             interval = setInterval(function(){
                 updateTimeLeft(-1);
                 $('#time-left').text(timeLeft);
                 if(timeLeft === 0){
+                    $('#time-left').text("Time's Up!");
+                    $('#time-left').css('color', 'red');
+                    $('#secs').toggleClass('hidden');
                     clearInterval(interval);
                     interval = undefined;
                     
@@ -116,8 +137,11 @@ var checkAnswer = function(userInput, answer){
 }
 
 $('#user-input').on('keyup', function(){
-    startGame();
-    checkAnswer(Number($(this).val()), currentQuestion.answer);
+    if(timeLeft !== 0){
+        startGame();
+        checkAnswer(Number($(this).val()), currentQuestion.answer);
+    }
+   
 });
 
 
@@ -142,6 +166,10 @@ var updateHighScore = function(){
     }
     
 }
+
+$('#reset-btn').on('click', reset);
+
+
 
 
 renderNewQuestion();
