@@ -106,6 +106,11 @@ var questionGenerator = function(){
    if(num1 < num2){
        [num1, num2] = [num2, num1];
    }
+
+   if(op === '/'){
+       var num3 = num1 * num2;
+       [num1,num2] = [num3, num1];
+   }
     question.answer = eval(num1 + op +  num2);
     if(question.answer < 0 || question.answer % 1 !== 0){
         questionGenerator();
